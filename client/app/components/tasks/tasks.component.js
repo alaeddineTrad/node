@@ -22,7 +22,17 @@ var TasksComponent = /** @class */ (function () {
         });
     }
     TasksComponent.prototype.addTask = function (event) {
+        var _this = this;
         event.preventDefault();
+        var newTask = {
+            task: this.task,
+            isDone: false
+        };
+        this.taskService.addTask(newTask)
+            .subscribe(function (task) {
+            _this.tasks.push(task);
+            _this.task = '';
+        });
         console.log(this.task);
     };
     TasksComponent = __decorate([

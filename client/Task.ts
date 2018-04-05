@@ -1,4 +1,4 @@
 export class Task{
-    title: string;
+    task: string;
     isDone: boolean;
 }
