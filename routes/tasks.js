@@ -23,23 +23,22 @@ router.get('/task/:id',function (req, res , next) {
 });
 
 //save Task
-router.post('/task',function (req,res,next) {
-    var task = res.body;
+router.post('/task', function(req, res, next){
+    var task = req.body;
     if(!task.task || !(task.isDone + '')){
         res.status(400);
         res.json({
-            "error" : "Bad Data"
+            "error": "Bad Data"
         });
-    }else{
-        db.playbook.save(task , function (err,task) {
-            if (err){
+    } else {
+        db.playbook.save(task, function(err, task){
+            if(err){
                 res.send(err);
             }
             res.json(task);
-            });
+        });
     }
-
-})
+});
 //delete task
 router.delete('/task/:id',function (req, res , next) {
     db.playbook.remove({_id: mongojs.ObjectId(req.params.id)},function (err, task) {

@@ -35,6 +35,26 @@ var TasksComponent = /** @class */ (function () {
         });
         console.log(this.task);
     };
+    TasksComponent.prototype.deleteTask = function (id) {
+        var tasks = this.tasks;
+        this.taskService.deleteTask(id).subscribe(function (data) {
+            if (data.n == 1) {
+                for (var i = 0; i < tasks.length; i++) {
+                    tasks.splice(i, 1);
+                }
+            }
+        });
+    };
+    TasksComponent.prototype.updateStatus = function (task) {
+        var _task = {
+            _id: task._id,
+            task: task.task,
+            isDone: !task.isDone
+        };
+        this.taskService.updateStatus(_task).subscribe(function (data) {
+            task.isDone = !task.isDone;
+        });
+    };
     TasksComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

@@ -29,8 +29,30 @@ export class TasksComponent {
               .subscribe(task=>{
                   this.tasks.push(task);
                   this.task= '';
-              })
+              });
           console.log(this.task);
       }
+      deleteTask(id){
+          var tasks = this.tasks;
+
+          this.taskService.deleteTask(id).subscribe(data =>{
+              if(data.n == 1){
+                  for (var i=0;i<tasks.length;i++){
+                      tasks.splice(i,1);
+                  }
+              }
+          });
+      }
+    updateStatus(task){
+        var _task = {
+            _id:task._id,
+            task: task.task,
+            isDone: !task.isDone
+        };
+
+        this.taskService.updateStatus(_task).subscribe(data => {
+            task.isDone = !task.isDone;
+        });
+    }
 }
 
