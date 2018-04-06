@@ -40,7 +40,9 @@ var TasksComponent = /** @class */ (function () {
         this.taskService.deleteTask(id).subscribe(function (data) {
             if (data.n == 1) {
                 for (var i = 0; i < tasks.length; i++) {
-                    tasks.splice(i, 1);
+                    if (tasks[i]._id == id) {
+                        tasks.splice(i, 1);
+                    }
                 }
             }
         });

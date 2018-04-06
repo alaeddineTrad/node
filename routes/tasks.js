@@ -49,26 +49,30 @@ router.delete('/task/:id',function (req, res , next) {
     })
 });
 //update Task
-router.put('/task/:id',function (req, res , next) {
+router.put('/task/:id', function(req, res, next){
     var task = req.body;
-    var upTask = {};
+    var updTask = {};
+
     if(task.isDone){
-        upTask.isDone = task.isDone;
+        updTask.isDone = task.isDone;
     }
-    if (task.title){
-        upTask.title = task.title;
+
+    if(task.task){
+        updTask.task = task.task;
     }
-    if (!upTask){
+
+    if(!updTask){
         res.status(400);
         res.json({
-            "error" : "Bad Data"
+            "error":"Bad Data"
         });
-    }else{
-    db.playbook.update({_id: mongojs.ObjectId(req.params.id)},upTask,{},function (err, task) {
-        if (err){
-            res.send(err);
-        }
+    } else {
+        db.playbook.update({_id: mongojs.ObjectId(req.params.id)},updTask, {}, function(err, task){
+            if(err){
+                res.send(err);
+            }
             res.json(task);
-    })}
+        });
+    }
 });
 module.exports = router;
