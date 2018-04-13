@@ -12,12 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var network_service_1 = require("../../services/network.service");
 var NetworkComponent = /** @class */ (function () {
+    //facts = []
     function NetworkComponent(networkService) {
         var _this = this;
         this.networkService = networkService;
         this.networks = [];
-        //facts = []
-        this.dev = {};
         this.networkService.getNetworkTasks()
             .subscribe(function (netTasks) {
             //console.log(netTasks);
@@ -40,7 +39,7 @@ var NetworkComponent = /** @class */ (function () {
                         console.log(category_info.certificate);
                         console.log(category_info.client_ssl_profile);
                         console.log(category_info.device);
-                        _this.dev = category_info.device;
+                        //this.dev = category_info.device
                         //this.dv = Object.values(category_info.device);
                         //console.log(this.dv);
                         console.log(category_info.device_group);

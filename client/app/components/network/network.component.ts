@@ -9,7 +9,6 @@ import {NetworkService} from '../../services/network.service';
 export class NetworkComponent{
     networks = [];
     //facts = []
-    dev ={};
 
 
     constructor(private networkService:NetworkService) {
@@ -32,7 +31,7 @@ export class NetworkComponent{
                             console.log(category_info.certificate)
                             console.log(category_info.client_ssl_profile)
                             console.log(category_info.device)
-                            this.dev = category_info.device
+                            //this.dev = category_info.device
                             //this.dv = Object.values(category_info.device);
                             //console.log(this.dv);
                             console.log(category_info.device_group)
